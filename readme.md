@@ -1,108 +1,61 @@
+![Contentify Logo](http://www.contentify.org/img/hero_small.png)
 
-## Heroku Laravel Example
+## Contentify CMS - v3.0
 
-This is boilerplate Laravel 5.7 project similar to what the `laravel new` or `composer create-project` commands create.
+[![Build Status](https://img.shields.io/travis/Contentify/Contentify.svg?style=flat-square)](https://travis-ci.org/Contentify/Contentify)
+[![Laravel](https://img.shields.io/badge/Laravel-5.5-orange.svg?style=flat-square)](http://laravel.com)
+[![Source](http://img.shields.io/badge/source-Contentify/Contentify-blue.svg?style=flat-square)](https://github.com/Contentify/Contentify)
+[![License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://tldrlegal.com/license/mit-license)
+[![Gitter](https://img.shields.io/gitter/room/badges/shields.svg?style=flat-square)](https://gitter.im/Contentify)
 
-This project can be used as is as a shortcut to deploying a Laravel 5.6 app on heroku, or used as a guide.
+[Contentify](http://contentify.org/) is an esports CMS based on the PHP framework Laravel 5.5. Build your gaming website with a modern CMS.
 
-## Heroku Specific Configuration
+- [x] Technologically advanced gaming CMS
+- [x] High quality code and documentation
+- [x] Based upon the most popular PHP framework
+- [x] Ready for mobile devices
+- [x] Easy to use but yet powerful
+- [x] Free and open source
+- [x] Tons of features
 
-- [Procfile](https://devcenter.heroku.com/articles/procfile) defining a web process using nginx and a worker process for running queues
-- Database configuration defaults set to use Postgres and to parse heroku-postgres `DATABASE_URL` environment variable
-- Redis configuration setup to use heroku-redis `REDIS_URL` environment variable
-- Failed job database configuration defaulting to postgres
-- A heroku app.json and post-deployment script (`php artisan postdeploy:heroku`)for use with Heroku Review Apps
-- TrustedProxies middleware configured to trust Heroku load balancers correctly
-- npm task named "postinstall" that is run during heroku deployments
-- Heroku specific logging configuration set as the default.  
+### Get the production version
 
-## Additional Configuration
+**Download it here**: [3.0](https://github.com/Contentify/Contentify/releases/tag/v3.0)
 
-- Pinned to PHP 7.2 (`~7.2.0`)
-- Setup with bootstrap scaffolding (`php artisan preset bootstrap`)
+To install Contentify please follow the instructions in the [wiki](https://github.com/Contentify/Contentify/wiki/Installation).
 
-## Local Development
+### Get the developer version
 
-**1. Database, app key, .env**
+Clone this repository via git and switch to the `3.0` branch. Via console, go to the Contentify directory and run `php composer.phar install`. Then follow the instructions in the [wiki](https://github.com/Contentify/Contentify/wiki/Installation).
 
-Clone this repository and run the following commands:
+### Update
 
-```bash
-composer install
-cp .env.example .env
-touch database/database.sqlite
-php artisan key:generate
-php artisan migrate
-npm install 
-npm run dev
-```
+To update from v2.6 to 3.0:
+* Make a backup of your files and your database!
+* Clear the cache by running `php artisan cache:clear` via console or deleting all files and folders in 
+`storage/framework/cache` and `storage/framework/views`
+* Delete these folders in the current Contentify installation: `vendor`, `app`, `contentify`, `resources`
+* Download the files for the update and copy & paste them into the Contentify folder. Replace existing files.
+* Please ensure that the `public/uploads/news` folder exists. If it does not, please create it.
+* If you made changes to the config files in the `config` folder, you have to re-apply them
+* Now run the updater script via console with `php <contentify>/public/update.php` or via browser with `http://localhost/public/update.php`.
 
-**2. Run**
+**Changes**: [Changelog.md](changelog.md)
 
-```bash
-php artisan serve
-```
+### Demo
 
-## Deploying to Heroku
+* URL: [demo.contentify.org](http://demo.contentify.org/)
+* Email: `demo@contentify.org`
+* Password: `demodemo`
 
-**1. Create a Heroku app**
+> The server resets (database, uploaded files and cache) twice per hour.
 
-Create an app name
+> NOTE: The demo website is running with Contentify 3.0.
 
-```bash
-app_name=heroku-laravel57-test-app
-```
+### Support
 
-Create Heroku app
+You can get free support via GitHub's [issue](https://github.com/Contentify/Contentify/issues) section or via [e-mail](mailto:contact@contentify.org). 
 
-```bash
-heroku apps:create $app_name
-heroku addons:create heroku-postgresql:hobby-dev --app $app_name
-heroku addons:create heroku-redis:hobby-dev --app $app_name
-heroku buildpacks:add heroku/php --app $app_name
-heroku buildpacks:add heroku/nodejs --app $app_name
-```
+### Contribution
 
-**2. Add Heroku git remote**
-
-```bash
-heroku git:remote --app $app_name
-```
-
-**3. Set config parameters**
-
-For Laravel to operate correctly you need to set `APP_KEY`:
-
-```bash
-heroku config:set --app $app_name APP_KEY=$(php artisan --no-ansi key:generate --show)
-```
-
-Set Queues, sessions and cache to use redis
-
-```bash
-heroku config:set --app $app_name QUEUE_CONNECTION=redis SESSION_DRIVER=redis CACHE_DRIVER=redis
-```
-
-Optionally set your app's environment to development
-
-```bash
-heroku config:set --app $app_name APP_ENV=development APP_DEBUG=true APP_LOG_LEVEL=debug
-```
-
-**4. Deploy to Heroku**
-
-```bash
- git push heroku master
-```
-
-**5. Run migrations**
-
-```bash
-heroku run -a $app_name php artisan postdeploy:heroku
-```
-
----
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+Contributions welcome! [Learn more...](CONTRIBUTING.md)

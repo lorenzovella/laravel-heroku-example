@@ -1,19 +1,21 @@
-<?php
-
-namespace App\Console;
+<?php namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
+
     /**
      * The Artisan commands provided by your application.
      *
      * @var array
      */
     protected $commands = [
-        //
+        \Contentify\Commands\InstallCommand::class,
+        \Contentify\Commands\MakeFormCommand::class,
+        \Contentify\Commands\LessCompileCommand::class,
+        \ChrisKonnertz\Jobs\Integration\JobsCommand::class,
     ];
 
     /**
@@ -29,7 +31,7 @@ class Kernel extends ConsoleKernel
     }
 
     /**
-     * Register the commands for the application.
+     * Register the Closure based and auto-loaded commands for the application.
      *
      * @return void
      */
