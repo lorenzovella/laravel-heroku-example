@@ -24,7 +24,7 @@ class InstallCommand extends Command
      * @var string
      */
     protected $description = 'Installs Contentify - no user input required';
-    
+
     /**
      * The installer object
      *
@@ -38,7 +38,7 @@ class InstallCommand extends Command
     public function __construct()
     {
         parent::__construct();
-        
+
         $this->installer = new Installer();
     }
 
@@ -53,22 +53,22 @@ class InstallCommand extends Command
 
         // Check preconditions
         require public_path('install.php');
-        
+
         // Say hello
         $this->info('Welcome to Contentify '.Config::get('app.version'). ' installer!');
         $this->comment('This command installs Contentify without asking for user input.');
         $this->comment('Therefore it does not change the database credentials.');
-        
+
         // Create database and seed it
         $this->info('Creating database...');
         $this->installer->createDatabase();
         $this->info('Creating user roles...');
-        $this->installer->createUserRoles();
+        // $this->installer->createUserRoles();
         $this->info('Creating daemon user...');
         $this->installer->createDaemonUser();
         $this->info('General seeding...');
         $this->installer->createSeed();
-        
+
         // Create super admin account
         $this->info('Creating super admin user...');
         $this->installer->createAdminUser($userName, $userEmail, $userPassword, $userPassword);
@@ -81,7 +81,7 @@ class InstallCommand extends Command
             ['Password', $userPassword],
         ];
         $this->table($headers, $values);
-        
+
         // Say goodbye
         $this->info('Installation complete!');
         $this->installer->markAsInstalled();
