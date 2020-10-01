@@ -598,7 +598,7 @@ class Installer
         /*
          * Run remaining (general) migrations trough Artisan.
          */
-        Artisan::call('migrate', ['--quiet' => true, '--force' => true]);
+        // Artisan::call('migrate', ['--quiet' => true, '--force' => true]);
 
         event(self::EVENT_NAME_DATABASE_CREATED);
     }
