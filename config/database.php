@@ -30,18 +30,20 @@ return [
     | choice installed on your machine before you begin development.
     |
     */
+    $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
+    $host = $url["host"];
+    $username = $url["user"];
+    $password = $url["pass"];
+    $database = substr($url["path"], 1);
     'connections' => [
 
         'mysql' => [
             'driver'    => 'mysql',
-            /*
-             * These settings are set by the installer and are stored in storage/app/database.ini
-             */
-            //'host'      => env('DB_HOST', '127.0.0.1'),
-            //'database'  => env('DB_DATABASE', 'contentify'),
-            //'username'  => env('DB_USERNAME', 'root'),
-            //'password'  => env('DB_PASSWORD', ''),
+            'host' => $host,
+            'database' => $database,
+            'username' => $username,
+            'password' => $password,
             'port'      => env('DB_PORT', '3306'),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset'   => 'utf8',            // Laravel 5.4 recommends utf8mb4
