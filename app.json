@@ -3,7 +3,7 @@
   "scripts": {
     "postdeploy": "php artisan postdeploy:heroku"
   },
-  "stack": "heroku-16",
+  "stack": "heroku-18",
   "env": {
     "APP_DEBUG": {
       "required": false
