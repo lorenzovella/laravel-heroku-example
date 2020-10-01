@@ -26,12 +26,12 @@ class InstallController extends Controller
      * (Relative) path to the database ini file
      */
     const DB_INI_FILE = 'app/database.ini';
-    
+
     /**
      * @var Installer
      */
     protected $installer;
-    
+
     public function __construct()
     {
         $this->installer = new Installer();
@@ -39,7 +39,7 @@ class InstallController extends Controller
 
     /**
      * Index action method
-     * 
+     *
      * @param  int             $step   Step number
      * @param  null|MessageBag $errors Validation errors
      * @return \Illuminate\Contracts\View\View
@@ -64,9 +64,9 @@ class InstallController extends Controller
                 $email                  = Input::get('email');
                 $password               = Input::get('password');
                 $passwordConfirmation  = Input::get('password_confirmation');
-                
+
                 $errors = $this->installer->createAdminuser($username, $email, $password, $passwordConfirmation);
-                
+
                 if (count($errors) > 0) {
                     return $this->index($step - 1, $errors);
                 }
@@ -97,7 +97,7 @@ class InstallController extends Controller
                 break;
             case 4:
                 $this->installer->createDatabase();
-                $this->installer->createUserRoles();
+                // $this->installer->createUserRoles();
                 $this->installer->createDaemonUser();
                 $this->installer->createSeed();
 
@@ -148,7 +148,7 @@ class InstallController extends Controller
                               Form::smartText('password', 'Password', $settings['password']).
                               Form::close().
                               '<p>For more settings, take a look at <code>config/database.php</code>.</p>';
-               
+
                 break;
             case 1:
                 if (version_compare(PHP_VERSION, '5.6.4') >= 0) {
@@ -208,12 +208,12 @@ class InstallController extends Controller
                               <li>Tokenizer Extension $tokenizer</li>
                               <li>XML Extension $xml</li>
                               </ul>
-                              <p>The application needs write access (CHMOD 777) to these directories 
+                              <p>The application needs write access (CHMOD 777) to these directories
                               and their sub directories:</p>
                               $dirUl
-                              <p class=\"warning\">Please do not continue 
+                              <p class=\"warning\">Please do not continue
                               if your server does not meet these requirements!</p>";
-                              
+
                 break;
             default:
                 $step       = 0; // Better safe than sorry! (E.g. if step was -1)
@@ -222,7 +222,7 @@ class InstallController extends Controller
                               <p><a href="https://github.com/Contentify/Contentify/wiki/Installation" target="_blank">
                               Take a look at our documentation if you need help.</a></p>';
         }
-        
+
         return View::make('installer', compact('title', 'content', 'step'));
     }
 }
