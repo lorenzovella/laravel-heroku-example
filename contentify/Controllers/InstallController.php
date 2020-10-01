@@ -97,7 +97,7 @@ class InstallController extends Controller
                 break;
             case 4:
                 $this->installer->createDatabase();
-                // $this->installer->createUserRoles();
+                $this->installer->createUserRoles();
                 $this->installer->createDaemonUser();
                 $this->installer->createSeed();
 

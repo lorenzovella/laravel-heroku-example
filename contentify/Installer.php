@@ -130,10 +130,10 @@ class Installer
         if (sizeof($result) > 0) { // Check if migrations table exists
             Artisan::call('migrate:reset', ['--quiet' => true, '--force' => true]); // Delete old tables
         }
-        // Artisan::call(
-        //     'migrate',
-        //     ['--path' => 'vendor/cartalyst/sentinel/src/migrations', '--quiet' => true, '--force' => true]
-        // );
+        Artisan::call(
+            'migrate',
+            ['--path' => 'vendor/cartalyst/sentinel/src/migrations', '--quiet' => true, '--force' => true]
+        );
 
         /*
          * Deactivate foreign key checks. This is one way to delete table with foreign constraints.
@@ -598,7 +598,7 @@ class Installer
         /*
          * Run remaining (general) migrations trough Artisan.
          */
-        // Artisan::call('migrate', ['--quiet' => true, '--force' => true]);
+        Artisan::call('migrate', ['--quiet' => true, '--force' => true]);
 
         event(self::EVENT_NAME_DATABASE_CREATED);
     }

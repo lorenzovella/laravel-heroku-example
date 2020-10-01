@@ -63,7 +63,7 @@ class InstallCommand extends Command
         $this->info('Creating database...');
         $this->installer->createDatabase();
         $this->info('Creating user roles...');
-        // $this->installer->createUserRoles();
+        $this->installer->createUserRoles();
         $this->info('Creating daemon user...');
         $this->installer->createDaemonUser();
         $this->info('General seeding...');
