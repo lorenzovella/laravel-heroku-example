@@ -21,12 +21,12 @@
         "invisnik/laravel-steam-auth": "3.*",
         "oyejorge/less.php": "1.*",
         "fideloper/proxy": "~3.3",
+        "predis/predis": "~1.0",
         "ext-json": "*",
         "ext-ctype": "*",
         "ext-curl": "*",
         "ext-pdo": "*",
-        "ext-gd": "*",
-        "predis/predis": "~1.0",
+        "ext-gd": "*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
